@@ -25,6 +25,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
@@ -290,7 +294,7 @@ var InfiniteScroll = (function(_Component) {
           ]);
 
         props.ref = function(node) {
-          _this2.scrollComponent = node;
+          _this2.scrollComponent = _reactDom2.default.findDOMNode(node);
           if (ref) {
             ref(node);
           }
@@ -321,7 +325,10 @@ InfiniteScroll.propTypes = {
     _propTypes2.default.object,
     _propTypes2.default.array,
   ]).isRequired,
-  element: _propTypes2.default.string,
+  element: _propTypes2.default.oneOfType([
+    _propTypes2.default.string,
+    _propTypes2.default.func,
+  ]),
   hasMore: _propTypes2.default.bool,
   initialLoad: _propTypes2.default.bool,
   isReverse: _propTypes2.default.bool,

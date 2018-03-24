@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 export default class InfiniteScroll extends Component {
   static propTypes = {
     children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
       .isRequired,
-    element: PropTypes.string,
+    element: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
     hasMore: PropTypes.bool,
     initialLoad: PropTypes.bool,
     isReverse: PropTypes.bool,
@@ -186,7 +187,7 @@ export default class InfiniteScroll extends Component {
     } = this.props;
 
     props.ref = node => {
-      this.scrollComponent = node;
+      this.scrollComponent = ReactDOM.findDOMNode(node);
       if (ref) {
         ref(node);
       }
